@@ -7,8 +7,8 @@ ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 WORKDIR /usr/share/elasticsearch
 
 # Download/extract defined ES version. busybox tar can't strip leading dir.
-RUN wget https://artifacts.elastic.co/downloads/elasticsearch//elasticsearch-5.0.2.tar.gz && \
-    EXPECTED_SHA=$(wget -O - https://artifacts.elastic.co/downloads/elasticsearch//elasticsearch-5.0.2.tar.gz.sha1) && \
+RUN wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.2.tar.gz && \
+    EXPECTED_SHA=$(wget -O - https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.2.tar.gz.sha1) && \
     test $EXPECTED_SHA == $(sha1sum elasticsearch-5.0.2.tar.gz | awk '{print $1}') && \
     tar zxf elasticsearch-5.0.2.tar.gz && \
     chown -R elasticsearch:elasticsearch elasticsearch-5.0.2 && \
