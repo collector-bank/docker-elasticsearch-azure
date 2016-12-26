@@ -1,13 +1,10 @@
 FROM docker.elastic.co/elasticsearch/elasticsearch:5.0.2
 MAINTAINER Elastic Docker Team <docker@elastic.co>
 
-ARG ES_JAVA_OPTS
-
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
-ENV ELASTIC_VERSION = 5.0.2
-ENV ES_DOWNLOAD_URL = https://artifacts.elastic.co/downloads/elasticsearch/
-ENV ES_JAVA_OPTS
+ENV ELASTIC_VERSION 5.0.2
+ENV ES_DOWNLOAD_URL https://artifacts.elastic.co/downloads/elasticsearch/
 
 WORKDIR /usr/share/elasticsearch
 
@@ -29,7 +26,7 @@ RUN set -ex && for esdirs in config data logs; do \
 USER elasticsearch
 
 # Install xpack and azure repository plugin
-RUN eval ${ES_JAVA_OPTS:-} elasticsearch-plugin install --batch x-pack
+RUN eval elasticsearch-plugin install --batch x-pack
 RUN bin/elasticsearch-plugin install repository-azure
 
 
