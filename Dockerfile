@@ -1,12 +1,13 @@
 FROM docker.elastic.co/elasticsearch/elasticsearch:5.0.2
 MAINTAINER Elastic Docker Team <docker@elastic.co>
 
-ARG ELASTIC_VERSION
-ARG ES_DOWNLOAD_URL
 ARG ES_JAVA_OPTS
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
+ENV ELASTIC_VERSION = 5.0.2
+ENV ES_DOWNLOAD_URL = https://artifacts.elastic.co/downloads/elasticsearch/
+ENV ES_JAVA_OPTS
 
 WORKDIR /usr/share/elasticsearch
 
