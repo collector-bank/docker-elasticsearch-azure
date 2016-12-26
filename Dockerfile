@@ -3,20 +3,18 @@ MAINTAINER Elastic Docker Team <docker@elastic.co>
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
-ENV ELASTIC_VERSION 5.0.2
-ENV ES_DOWNLOAD_URL https://artifacts.elastic.co/downloads/elasticsearch/
 
 WORKDIR /usr/share/elasticsearch
 
 # Download/extract defined ES version. busybox tar can't strip leading dir.
-RUN wget ${ES_DOWNLOAD_URL}/elasticsearch-${ELASTIC_VERSION}.tar.gz && \
-    EXPECTED_SHA=$(wget -O - ${ES_DOWNLOAD_URL}/elasticsearch-${ELASTIC_VERSION}.tar.gz.sha1) && \
-    test $EXPECTED_SHA == $(sha1sum elasticsearch-${ELASTIC_VERSION}.tar.gz | awk '{print $1}') && \
-    tar zxf elasticsearch-${ELASTIC_VERSION}.tar.gz && \
-    chown -R elasticsearch:elasticsearch elasticsearch-${ELASTIC_VERSION} && \
-    mv elasticsearch-${ELASTIC_VERSION}/* . && \
-    rmdir elasticsearch-${ELASTIC_VERSION} && \
-    rm elasticsearch-${ELASTIC_VERSION}.tar.gz
+RUN wget https://artifacts.elastic.co/downloads/elasticsearch//elasticsearch-5.0.2.tar.gz && \
+    EXPECTED_SHA=$(wget -O - https://artifacts.elastic.co/downloads/elasticsearch//elasticsearch-5.0.2.tar.gz.sha1) && \
+    test $EXPECTED_SHA == $(sha1sum elasticsearch-5.0.2.tar.gz | awk '{print $1}') && \
+    tar zxf elasticsearch-5.0.2.tar.gz && \
+    chown -R elasticsearch:elasticsearch elasticsearch-5.0.2 && \
+    mv elasticsearch-5.0.2/* . && \
+    rmdir elasticsearch-5.0.2 && \
+    rm elasticsearch-5.0.2.tar.gz
 
 RUN set -ex && for esdirs in config data logs; do \
         mkdir -p "$esdirs"; \
