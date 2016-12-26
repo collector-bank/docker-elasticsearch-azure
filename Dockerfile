@@ -1,4 +1,4 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:5.0.2
+FROM docker.elastic.co/elasticsearch/elasticsearch-alpine-base:latest
 MAINTAINER Elastic Docker Team <docker@elastic.co>
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
